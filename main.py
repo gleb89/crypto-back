@@ -3,8 +3,28 @@ from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+
+
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:3000",
+
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 headers = {
   'Accepts': 'application/json',
@@ -32,12 +52,22 @@ async def get_price(id):
 
 
 @app.get('/')
-async def get_crypto_price(id:str):
-  name, price = await get_price(id)
-  return {
-    'coin':name,
-    'price':price
-    }
+async def get_crypto_price():
+  list_crypto = []
+  name_bit, price_bit = await get_price('1')
+  name_eth, price_eth = await get_price('1027')
+  bitcion =  {
+            'coin':name_bit,
+            'price':int(price_bit)
+            }
+  list_crypto.append(bitcion)
+  ethereum = {
+            'coin':name_eth,
+            'price':int(price_eth)
+            }
+  list_crypto.append(ethereum)
+  
+  return list_crypto
 
 # 1027 - ethereum
 # 1 - bitcoin
