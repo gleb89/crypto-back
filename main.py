@@ -66,8 +66,5 @@ async def get_crypto_price():
             'price':int(price_eth)
             }
   list_crypto.append(ethereum)
-  
-  return list_crypto
 
-# 1027 - ethereum
-# 1 - bitcoin
+  return list_crypto
