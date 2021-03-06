@@ -35,6 +35,23 @@ async def get_price(id):
     print(e)
 
 
+async def get_list_crypto():
+  list_crypto = []
+  name_bit, price_bit = await get_price('1')
+  name_eth, price_eth = await get_price('1027')
+  bitcion =  {
+            'coin':name_bit,
+            'price':int(price_bit)
+            }
+  list_crypto.append(bitcion)
+  ethereum = {
+            'coin':name_eth,
+            'price':int(price_eth)
+            }
+  list_crypto.append(ethereum)
+  return list_crypto
+
+
 async def get_user_by_email(data):
     alphabet = string.ascii_letters + string.digits
     servece = data['operation']
