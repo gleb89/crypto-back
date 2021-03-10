@@ -1,8 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 
 from routers.routers import email, price_crypto
-
+from fastapi.responses import HTMLResponse
 
 
 app = FastAPI()
@@ -24,6 +24,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+
+
+
 
 
 app.include_router(
