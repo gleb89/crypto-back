@@ -10,10 +10,12 @@ app = FastAPI()
 
 
 origins = [
+    "https://speedcrypto.ru",
     "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:3000",
+
 
 ]
 
@@ -49,11 +51,3 @@ app.include_router(
 def home():
 
   return {'kkk':'hhh'}
-
-
-
-
-
-
-
-
